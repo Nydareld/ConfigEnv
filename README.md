@@ -3,7 +3,87 @@ Gestionnaire de configuration en json, ini avec overide possible en variable dâ€
 
 ## install
 
+with pip :
+
+    pip install ConfigEnv
+
 ## how to use
+
+You can actualy use ConfigEnv with either:
+    - json file
+    - ini file
+    - environement variable
+
+Notice than the environement variable will take over configuration files
+
+
+### basic json exemple:
+with the file :
+
+```json
+// config.json
+{
+    "AWS" : {
+        "ACCESS_KEY_ID" : "toto"
+    }
+}
+```
+
+```python
+from ConfigEnv import Config
+
+config = Config("config.json")
+print(config.get("AWS_ACCESS_KEY_ID"))
+# prints toto
+```
+
+### overide file
+you can add more file to veride configs
+notice that the lib works with cache, so register all your config files before request config
+
+```json
+// config.json
+{
+    "AWS" : {
+        "ACCESS_KEY_ID" : "toto"
+    }
+}
+```
+
+```ini
+; config.ini
+[AWS]
+ACCESS_KEY_ID=tata
+```
+
+```python
+from ConfigEnv import Config
+
+config = Config("config.json")
+config.addFile = Config("config.ini")
+print(config.get("AWS_ACCESS_KEY_ID"))
+# prints tata
+```
+
+### overide with environement variable
+
+```json
+// config.json
+{
+    "AWS" : {
+        "ACCESS_KEY_ID" : "toto"
+    }
+}
+```
+with the environement variable : `AWS_ACCESS_KEY_ID=tata`
+```python
+from ConfigEnv import Config
+
+config = Config("config.json")
+
+print(config.get("AWS_ACCESS_KEY_ID"))
+# prints tata
+```
 
 ## devlopping guide
 
@@ -35,3 +115,11 @@ run coverage
 report coverage
 
     coverage report -m
+
+### release
+
+create package :
+    python3 setup.py sdist bdist_wheel
+
+publish :
+    python -m twine upload dist/*
