@@ -29,13 +29,14 @@ class Config():
 
     def _findConfig(self,path):
         splited = path.split("_")
-        self._recursiveRoute(self._configCache,splited)
+        return self._recursiveRoute(self._config,splited)
 
     def _recursiveRoute(self,context,left):
         search = ""
         for index in range(len(left)):
             search += left.pop(0) if len(search) == 0 else "_"+left.pop(0)
             print(search)
+            print(context)
             if search in context and isinstance(context[search],dict):
                 print("in context Dict")
                 return self._recursiveRoute(context[search],left)

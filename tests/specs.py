@@ -44,3 +44,7 @@ class TestConfig(unittest.TestCase):
 
         self.assertEqual( yepyap , "yep yap" )
         self.assertEqual( yapyep , "yap yep" )
+
+    def test__findConfig(self):
+        config = Config(self.getCurrentPath()+"data/config.json")
+        self.assertEqual( config._findConfig('DEFAULT_SECRET_KEY'), "secret-key-of-myapp" )
