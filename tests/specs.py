@@ -48,3 +48,8 @@ class TestConfig(unittest.TestCase):
     def test__findConfig(self):
         config = Config(self.getCurrentPath()+"data/config.json")
         self.assertEqual( config._findConfig('DEFAULT_SECRET_KEY'), "secret-key-of-myapp" )
+
+    def test__setCache(self):
+        config = Config(self.getCurrentPath()+"data/config.json")
+        config._setCache("toto","tata")
+        self.assertEqual( config._configCache['toto'], "tata" )
