@@ -12,12 +12,12 @@ setuptools.setup(
     description="Gestionnaire de configuration en json, ini avec overide possible en variable d’environnement",
     long_description=long_description,
     long_description_content_type="text/markdown",
-     url="https://github.com/Nydareld/ConfigEnv",
-     packages=setuptools.find_packages(),
-     classifiers=[
+    url="https://github.com/Nydareld/ConfigEnv",
+    packages=setuptools.find_packages(exclude=["tests"]),
+    classifiers=[
         "Programming Language :: Python :: 3.5",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-     ],
+    ],
 
 )
