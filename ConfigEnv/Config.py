@@ -1,6 +1,8 @@
 import json
 import configparser
 
+from .FileFormatException import FileFormatException
+
 class Config():
     """docstring for ConfigJsonEnv."""
 
@@ -18,7 +20,7 @@ class Config():
             fileContent = configparser.ConfigParser()
             fileContent.read(file)
         else :
-            raise Exception('file format not suported')
+            raise FileFormatException()
         self._config = {**self._config, **fileContent}
 
     def get(self,path):

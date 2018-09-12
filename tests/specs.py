@@ -5,6 +5,7 @@ if modulePath not in sys.path:
 
 import unittest
 from ConfigEnv import Config
+from ConfigEnv import FileFormatException
 
 # print(ConfigEnv.__dict__.keys() )
  # print(ConfigEnv)
@@ -63,3 +64,7 @@ class TestConfig(unittest.TestCase):
         config = Config(self.getCurrentPath()+"data/config.json")
         self.assertEqual( config.get('DEFAULT_SECRET_KEY'), "secret-key-of-myapp" )
         self.assertEqual( config._configCache['DEFAULT_SECRET_KEY'], "secret-key-of-myapp" )
+
+    def test__badFile(self):
+        with self.assertRaises(FileFormatException):
+            Config(self.getCurrentPath()+"data/config.toto")
