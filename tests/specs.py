@@ -68,3 +68,10 @@ class TestConfig(unittest.TestCase):
     def test__badFile(self):
         with self.assertRaises(FileFormatException):
             Config(self.getCurrentPath()+"data/config.toto")
+
+    def test__getCache(self):
+        config = Config(self.getCurrentPath()+"data/config.json")
+        self.assertEqual( 'DEFAULT_SECRET_KEY' in config._configCache, False )
+        self.assertEqual( config.get('DEFAULT_SECRET_KEY'), "secret-key-of-myapp" )
+        self.assertEqual( 'DEFAULT_SECRET_KEY' in config._configCache, True )
+        self.assertEqual( config.get('DEFAULT_SECRET_KEY'), "secret-key-of-myapp" )
