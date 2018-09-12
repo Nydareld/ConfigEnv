@@ -1,1 +1,1 @@
-from .ConfigEnv import ConfigEnv
+from .Config import Config
