@@ -1,3 +1,4 @@
+import os
 import json
 import configparser
 
@@ -31,7 +32,10 @@ class Config():
 
     def _findConfig(self,path):
         splited = path.split("_")
-        config = self._recursiveRoute(self._config,splited)
+        if path in os.environ:
+            config = os.environ[path]
+        else :
+            config = self._recursiveRoute(self._config,splited)
         self._setCache(path,config)
         return config
 

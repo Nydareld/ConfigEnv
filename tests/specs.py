@@ -75,3 +75,8 @@ class TestConfig(unittest.TestCase):
         self.assertEqual( config.get('DEFAULT_SECRET_KEY'), "secret-key-of-myapp" )
         self.assertEqual( 'DEFAULT_SECRET_KEY' in config._configCache, True )
         self.assertEqual( config.get('DEFAULT_SECRET_KEY'), "secret-key-of-myapp" )
+
+    def test__getEnvOveride(self):
+        os.environ['DEFAULT_SECRET_KEY'] = "superSecret"
+        config = Config(self.getCurrentPath()+"data/config.json")
+        self.assertEqual( config.get('DEFAULT_SECRET_KEY'), "superSecret" )
