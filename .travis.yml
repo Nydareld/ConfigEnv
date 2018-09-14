@@ -15,10 +15,14 @@ after_success:
     - coverage report -m
     - coveralls
 
-deploy:
-    provider: pypi
-    user: Nydareld
-    password:
-        secure: RQFVNDRsa2MnXB8yWVEBybzaV05jhzDddSbgFwWOsX1SiHz9SPjGfhzYbPq5X2wSAAE1rQNeoBWbQgTR8mcY3QX+ozBf2ID/kH2CKqeprw42U6aeu5DtRdlV68JzRbSDGDVrwTImHLAXV3F78qdXPG4AkzxJ+cGiP1Z0VKEba1UYluCp8UdFk5rsA/X/dqWvvVSMsS+Sq9FQm9Ojmm8nPttLkcFDN+sv+Jc0y2/2E+9sIrRg/0yT24zB4XW5d1k3B2qx9pdIKQnsAIIuuIBoJeaYpCTFm388cVfErS8yJLhpg2RNprf+b0CwPSAnIivjt/QfntwQ71GxZT6vllOPVVt0icSsKwYGCZvgwMGRTkTM+6cTRL6LK8XiAEyvZW5sbMgEG2Ew425Rm5SwkTaMin0Er5ArMrXYwEph6Jq1B2uSCEY6uYWlIo0OQhxaN+4as/Oed66oHUpXO9rT/2mei2Ya6VK0uHqlCA33ETeyC9BOdsQGnNAysLESLCwmv3ro3iFBUrswfUKqfEN4qxPNy31QZqQAGVgx0WtDQGn996SMrhI3i5BpCiavxygAkc+hx3L/kA0pudLZlV68TiCMVD0RPWDt8gTCvdJckIkscmHZPPH0R1iVzryhhnvmXMPTuLPpzSq+Y3UKzm8/+imalr2GL6S6GEmrehsXzEGMsOU=
-    on:
-        tags: true
+
+jobs:
+    include:
+        - stage: deploy
+          provider: pypi
+          python: 3.5
+          user: Nydareld
+          password:
+              secure: RQFVNDRsa2MnXB8yWVEBybzaV05jhzDddSbgFwWOsX1SiHz9SPjGfhzYbPq5X2wSAAE1rQNeoBWbQgTR8mcY3QX+ozBf2ID/kH2CKqeprw42U6aeu5DtRdlV68JzRbSDGDVrwTImHLAXV3F78qdXPG4AkzxJ+cGiP1Z0VKEba1UYluCp8UdFk5rsA/X/dqWvvVSMsS+Sq9FQm9Ojmm8nPttLkcFDN+sv+Jc0y2/2E+9sIrRg/0yT24zB4XW5d1k3B2qx9pdIKQnsAIIuuIBoJeaYpCTFm388cVfErS8yJLhpg2RNprf+b0CwPSAnIivjt/QfntwQ71GxZT6vllOPVVt0icSsKwYGCZvgwMGRTkTM+6cTRL6LK8XiAEyvZW5sbMgEG2Ew425Rm5SwkTaMin0Er5ArMrXYwEph6Jq1B2uSCEY6uYWlIo0OQhxaN+4as/Oed66oHUpXO9rT/2mei2Ya6VK0uHqlCA33ETeyC9BOdsQGnNAysLESLCwmv3ro3iFBUrswfUKqfEN4qxPNy31QZqQAGVgx0WtDQGn996SMrhI3i5BpCiavxygAkc+hx3L/kA0pudLZlV68TiCMVD0RPWDt8gTCvdJckIkscmHZPPH0R1iVzryhhnvmXMPTuLPpzSq+Y3UKzm8/+imalr2GL6S6GEmrehsXzEGMsOU=
+              on:
+                  tags: true
