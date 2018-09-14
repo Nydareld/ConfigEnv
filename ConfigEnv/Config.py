@@ -52,6 +52,16 @@ class Config():
         else :
             return self._findConfig(path)
 
+    def clearCache(self):
+        """
+            permet de netoyer le cache
+
+            Returns:
+            type: None
+        """
+        self._configCache =  dict()
+
+
     def _findConfig(self,path):
         splited = path.split("_")
         if path in os.environ:
