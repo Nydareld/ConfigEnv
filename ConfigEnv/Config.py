@@ -26,15 +26,19 @@ class Config():
             Raises:
             FileFormatException: Erreur du format de fichier
         """
+        mylambda= lambda adict : { key.upper() : mylambda(adict[key]) if isinstance(adict[key],dict) else adict[key] for key in adict.keys() }
         if file.endswith('.json') :
             with open(file, 'r') as f:
-                fileContent = json.load(f)
+                fileContent = mylambda(json.load(f))
+
         elif file.endswith('.ini') :
-            fileContent = configparser.ConfigParser()
-            fileContent.read(file)
+            parser  = configparser.ConfigParser()
+            parser.read(file)
+            fileContent = { section : { conflist[0].upper() : conflist[1] for conflist in parser.items(section) } for section in parser.sections() }
         else :
             raise FileFormatException()
-        self._config = {**self._config, **fileContent}
+
+        self._config = {**self._config, **mylambda(fileContent)}
 
     def get(self,path):
         """
@@ -47,6 +51,7 @@ class Config():
             type: String
             la valeur de la config ou None
         """
+        path = path.upper()
         if path in self._configCache:
             return self._configCache[path]
         else :
@@ -63,10 +68,10 @@ class Config():
 
 
     def _findConfig(self,path):
-        splited = path.split("_")
         if path in os.environ:
             config = os.environ[path]
         else :
+            splited = path.split("_")
             config = self._recursiveRoute(self._config,splited)
         self._setCache(path,config)
         return config
@@ -78,7 +83,8 @@ class Config():
         search = ""
         for index in range(len(left)):
             search += left.pop(0) if len(search) == 0 else "_"+left.pop(0)
-            if search in context and isinstance(context[search],dict):
+            if search in [ key.upper() for key in context ] and isinstance(context[search],dict):
                 return self._recursiveRoute(context[search],left)
             elif search in context:
+                # print(search,context[search])
                 return context[search]

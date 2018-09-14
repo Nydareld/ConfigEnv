@@ -35,16 +35,16 @@ class TestConfig(unittest.TestCase):
     def test__recursiveRoute(self):
         config = Config()
         fakeContext = {
-            "a" : {
-                "b_c" : "yep yap"
+            "A" : {
+                "B_C" : "yep yap"
             },
-            "d" : "yap yep"
+            "D" : "yap yep"
         }
-        yapyep = config._recursiveRoute(fakeContext,["d"])
-        yepyap = config._recursiveRoute(fakeContext,["a","b","c"])
+        yapyep = config._recursiveRoute(fakeContext,["D"])
+        yepyap = config._recursiveRoute(fakeContext,["A","B","C"])
 
-        self.assertEqual( yepyap , "yep yap" )
         self.assertEqual( yapyep , "yap yep" )
+        self.assertEqual( yepyap , "yep yap" )
 
     def test__findConfig(self):
         config = Config(self.getCurrentPath()+"data/config.json")
@@ -80,3 +80,12 @@ class TestConfig(unittest.TestCase):
         os.environ['DEFAULT_SECRET_KEY'] = "superSecret"
         config = Config(self.getCurrentPath()+"data/config.json")
         self.assertEqual( config.get('DEFAULT_SECRET_KEY'), "superSecret" )
+
+    def test_clearCache(self):
+        config = Config(self.getCurrentPath()+"data/config.json")
+        self.assertEqual( config.get('CI_SERVICE'), "travis-ci" )
+        config.addFile(self.getCurrentPath()+"data/config.ini")
+        self.assertEqual( config.get('CI_SERVICE'), "travis-ci" )
+        config.clearCache()
+        print(config.get('CI_SERVICE'))
+        self.assertEqual( config.get('CI_SERVICE'), "plus-travis-ci" )
