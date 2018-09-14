@@ -12,8 +12,10 @@ script:
 jobs:
     include:
         - python: 3.5
-        - python: 3.6
         - stage: coverage
           python: 3.5
           script:
             - coverage run --source=ConfigEnv -m unittest tests
+          after_success:
+            - coverage report -m
+            - coveralls
