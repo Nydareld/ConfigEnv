@@ -1,4 +1,4 @@
-# ConfigEnv [![Build Status](https://travis-ci.org/Nydareld/ConfigEnv.svg?branch=master)](https://travis-ci.org/Nydareld/ConfigEnv)
+# ConfigEnv [![Build Status](https://travis-ci.org/Nydareld/ConfigEnv.svg?branch=master)](https://travis-ci.org/Nydareld/ConfigEnv) [![Coverage Status](https://coveralls.io/repos/github/Nydareld/ConfigEnv/badge.svg)](https://coveralls.io/github/Nydareld/ConfigEnv) [![PyPI version](https://badge.fury.io/py/ConfigEnv.svg)](https://badge.fury.io/py/ConfigEnv)
 Gestionnaire de configuration en json, ini avec overide possible en variable d’environnement
 
 ## install
