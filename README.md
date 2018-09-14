@@ -1,4 +1,5 @@
 # ConfigEnv
+[![Build Status](https://travis-ci.org/Nydareld/ConfigEnv.svg?branch=master)](https://travis-ci.org/Nydareld/ConfigEnv)
 Gestionnaire de configuration en json, ini avec overide possible en variable d’environnement
 
 ## install
