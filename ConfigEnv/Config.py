@@ -14,6 +14,18 @@ class Config():
             self.addFile(file)
 
     def addFile(self,file):
+        """
+            Permet d'ajouter un fichier
+
+            Args:
+            file (string): path d'un fichier json
+
+            Returns:
+            type: None
+
+            Raises:
+            FileFormatException: Erreur du format de fichier
+        """
         if file.endswith('.json') :
             with open(file, 'r') as f:
                 fileContent = json.load(f)
@@ -25,6 +37,16 @@ class Config():
         self._config = {**self._config, **fileContent}
 
     def get(self,path):
+        """
+            permet de récupérer une config
+
+            Args:
+            path (String): Nom d'une config
+
+            Returns:
+            type: String
+            la valeur de la config ou None
+        """
         if path in self._configCache:
             return self._configCache[path]
         else :
