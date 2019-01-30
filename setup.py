@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='ConfigEnv',
-    version='1.1.9',
+    version='1.1.10',
     author="Théo \"Nydareld\" Guerin",
     author_email="theo.guerin.pro@gmail.com",
     description="Gestionnaire de configuration en json, ini avec overide possible en variable d’environnement",
