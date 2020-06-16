@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='ConfigEnv',
-    version='1.2.1',
+    version='1.2.2',
     author="Théo \"Nydareld\" Guerin",
     author_email="theo.guerin.pro@gmail.com",
     description="Gestionnaire de configuration en json, ini avec overide possible en variable d’environnement",
@@ -17,6 +17,7 @@ setuptools.setup(
     classifiers=[
         "Programming Language :: Python :: 3.5",
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
