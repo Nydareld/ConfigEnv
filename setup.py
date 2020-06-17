@@ -8,7 +8,7 @@ long_description = fh.read()
 
 setuptools.setup(
     name='ConfigEnv',
-    version='1.2.2',
+    version='1.2.3"',
     author="Théo \"Nydareld\" Guerin",
     author_email="theo.guerin.pro@gmail.com",
     description="Gestionnaire de configuration en json, ini avec overide possible en variable d’environnement",
