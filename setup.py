@@ -1,7 +1,9 @@
 import setuptools
+import io
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+fh = io.open("README.md",mode="r",encoding="utf-8")
+long_description = fh.read()
+
 
 
 setuptools.setup(
